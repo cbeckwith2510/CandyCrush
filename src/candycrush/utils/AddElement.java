@@ -12,7 +12,8 @@ import javax.swing.ImageIcon;
  *
  * @author smoranbl
  */
-public class AddElement {    
+public class AddElement {
+    //Devuelve la imagen correspondiente a la enum que se le pase.
     public Image createImageIcon(EnumCandy kindCandy){
         Image imageCandy = null;
         
@@ -40,6 +41,7 @@ public class AddElement {
         return imageCandy;
     }
     
+    //Devuelve un array de columnas de array Candy.
     public ArrayList<ArrayList<Candy>> createColums(){
         ArrayList<ArrayList<Candy>> columnArray = new <ArrayList<Candy>>ArrayList();        
         

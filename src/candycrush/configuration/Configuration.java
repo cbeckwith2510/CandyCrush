@@ -2,7 +2,7 @@ package candycrush.configuration;
 
 
 /**
- *
+ * Almacena las constantes de juego.
  * @author smoranbl
  */
 public final class Configuration {

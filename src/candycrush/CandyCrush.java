@@ -11,10 +11,12 @@ public class CandyCrush {
     private static boolean playing = true;
     private static GameTable game;
     
+    //Metodo Update del juego, llama al metodo game del gameTable.
     public static void update(){
         game.game();
     }
     
+    //Metodo Draw del juego, llama al repaint del panel.
     public static void draw(){
         game.getCandyFrame().getGamePanel().repaint();
     }        
@@ -28,8 +30,7 @@ public class CandyCrush {
         while(playing){                                    
             Thread.sleep(5);
             
-            update();
-            
+            update();            
             draw();            
         }
     }

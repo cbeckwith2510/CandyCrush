@@ -18,26 +18,30 @@ public class Candy extends GameElement{
     public Candy(int coordinateX, int coordinateY, EnumCandy type){
         super(coordinateX, coordinateY);
         
-        this.positionX = Util.get.getPositionX(coordinateX);
+        this.positionX = Util.get.getPosition(coordinateX, true);
         this.positionY = 0;
         this.type = type;             
         this.image = Util.add.createImageIcon(type);               
     }   
     
-    //TODO: Modular mucho mejor.
+    //Metodo que mueve el caramelo si no esta ocupadon la posicion que le corresponde para sus coordinates.
     public void moveCandyToPosition(){
-        if(positionX != Util.get.getPositionX(coordinateX)){
-            if(positionX < Util.get.getPositionX(coordinateX))
-                positionX++;
-            else if(positionX > Util.get.getPositionX(coordinateX))
-                positionX--;
+        if(positionX != Util.get.getPosition(coordinateX, true)){            
+            positionX = moveCandy(positionX, coordinateX, true);
         }
-        else if(positionY != Util.get.getPositionY(coordinateY)){
-            if(positionY < Util.get.getPositionY(coordinateY))
-                positionY++;
-            else if(positionY > Util.get.getPositionY(coordinateY))
-                positionY--;            
+        else if(positionY != Util.get.getPosition(coordinateY, false)){                 
+            positionY = moveCandy(positionY, coordinateY, false);
         }
+    }
+    
+    //Metodo que mueve el caramelo hacia arriba o abajo en funcion de la posicion que ocupe.
+    public int moveCandy(int position, int coordiante, boolean side){
+        if(position < Util.get.getPosition(coordiante, side))
+            position++;
+        else if(position > Util.get.getPosition(coordiante, side))
+            position--;
+        
+        return position;
     }
     
     //Metodos GET.

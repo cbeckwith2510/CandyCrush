@@ -13,8 +13,7 @@ public class CandyFrame extends JFrame {
     private GamePanel gamePanel;
     
     public CandyFrame(GameTable table){
-        gamePanel = new GamePanel(table);
-        
+        gamePanel = new GamePanel(table);        
         createAndShowGUI();
     }
     
@@ -28,6 +27,7 @@ public class CandyFrame extends JFrame {
         this.setVisible(true);        
     }
     
+    //Metodos GET.
     public GamePanel getGamePanel(){
         return gamePanel;
     }

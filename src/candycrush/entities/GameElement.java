@@ -29,4 +29,8 @@ public class GameElement {
     public void setCoordinateY(int coordinateY) {
         this.coordinateY = coordinateY;
     }  
+    public void setCoordinates(int coordinateX, int coordinateY) {
+        setCoordinateX(coordinateX);
+        setCoordinateY(coordinateY);
+    }
 }

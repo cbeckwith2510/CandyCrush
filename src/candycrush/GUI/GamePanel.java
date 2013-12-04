@@ -21,8 +21,7 @@ public class GamePanel extends JPanel {
     GameTable table;
     
     public GamePanel(GameTable table){                
-        this.table = table;
-        
+        this.table = table;        
         configureGamePanel();
     }
     
@@ -31,61 +30,44 @@ public class GamePanel extends JPanel {
         this.addMouseListener(moveCandy);
     }            
     
+    //Metodo paint del panel, llama al metodo draw candy para cada una de las columnas del gameTable.
     @Override
     public void paint(Graphics graphics){
-        graphics.setColor(Color.WHITE);
+        graphics.setColor(new Color(96,158,171));
         graphics.fillRect(0, 0, 681, 542);        
         
         for(int i=0; i<table.getCandyColumns().size(); i++)
             drawCandy(graphics, table.getCandyColumns().get(i));
     }
     
+    //Metodo draw candy, recorre una columna y pinta cada caramelo de la misma en base a su positonX y positionY.
     public void drawCandy(Graphics graphics, ArrayList<Candy> candys){
         for(int i=0; i<candys.size(); i++){
             graphics.drawImage(candys.get(i).getImage(), candys.get(i).getPositionX(), candys.get(i).getPositionY(), this);
         }
     }
     
+    //MouseListener con el pressed coge un caramelo, con el released coge el caramelo target y les intercambia las coordinadas.
+    //TODO: intercambie posiciones en el arrayList de cada columna.
     MouseListener moveCandy = new MouseListener(){
         Candy sourceCandy = null;
         Candy targetCandy = null;
         
         @Override
-        public void mouseClicked(MouseEvent e) {
-            
-        }
-
+        public void mouseClicked(MouseEvent e) {}
         @Override
         public void mousePressed(MouseEvent e) {
-            sourceCandy = Util.get.getCandyOnMouse(table.getCandyColumns(), e.getPoint()); 
-            if(Util.check.isMoving(sourceCandy))
-                System.out.println(sourceCandy.getCoordinateX() + "," + sourceCandy.getCoordinateY());
+            sourceCandy = Util.get.getCandyOnMouse(table.getCandyColumns(), e.getPoint());             
         }
-
-        @Override
-        //TODO: Modular mucho mejor.
+        @Override        
         public void mouseReleased(MouseEvent e) {
-            targetCandy = Util.get.getCandyOnMouse(table.getCandyColumns(), e.getPoint());
-            if(Util.check.isMoving(targetCandy)){
-                int targetX = targetCandy.getCoordinateX();
-                int targetY = targetCandy.getCoordinateY();
-                
-                targetCandy.setCoordinateX(sourceCandy.getCoordinateX());
-                targetCandy.setCoordinateY(sourceCandy.getCoordinateY());
-                sourceCandy.setCoordinateX(targetX);
-                sourceCandy.setCoordinateY(targetY);                                 
-            }                
+            targetCandy = Util.get.getCandyOnMouse(table.getCandyColumns(), e.getPoint());            
+            Util.set.setCoordinates(sourceCandy, targetCandy);
+            Util.set.setPositionInArray(table.getCandyColumns(), sourceCandy, targetCandy);
         }
-
         @Override
-        public void mouseEntered(MouseEvent e) {
-            
-        }
-
+        public void mouseEntered(MouseEvent e) {}
         @Override
-        public void mouseExited(MouseEvent e) {
-            
-        }
-        
+        public void mouseExited(MouseEvent e) {}        
     };
 }
