@@ -8,7 +8,7 @@ import candycrush.entities.GameTable;
  * @author smoranbl
  */
 public class CandyCrush {
-    private static boolean playing = true;
+    private static final boolean playing = true;
     private static GameTable game;
     
     //Metodo Update del juego, llama al metodo game del gameTable.
@@ -31,8 +31,7 @@ public class CandyCrush {
             Thread.sleep(5);
             
             update();            
-            draw();            
-        }
-    }
-    
+            draw();                            
+        }                
+    }    
 }

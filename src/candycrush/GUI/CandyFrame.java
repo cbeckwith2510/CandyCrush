@@ -10,7 +10,7 @@ import javax.swing.JFrame;
  * @author smoranbl
  */
 public class CandyFrame extends JFrame {
-    private GamePanel gamePanel;
+    private final GamePanel gamePanel;
     
     public CandyFrame(GameTable table){
         gamePanel = new GamePanel(table);        
